@@ -1,4 +1,4 @@
-package com.example.LaithThanksgiving.LaithThanksgiving.mainApp;
+package com.example.LaithThanksgiving.LaithThanksgiving;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

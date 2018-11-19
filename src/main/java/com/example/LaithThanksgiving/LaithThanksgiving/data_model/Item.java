@@ -3,7 +3,7 @@ package com.example.LaithThanksgiving.LaithThanksgiving.data_model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity (name= "ITEMS")
 public class Item {
 
     @Id
@@ -13,6 +13,14 @@ public class Item {
 
     @Column(name="ITEM_NAME")
     private String itemName;
+
+    public Item( ) {
+
+    }
+
+    public Item( String itemName) {
+        this.itemName = itemName;
+    }
 
     public Item(Long itemId, String itemName) {
         this.itemId = itemId;
