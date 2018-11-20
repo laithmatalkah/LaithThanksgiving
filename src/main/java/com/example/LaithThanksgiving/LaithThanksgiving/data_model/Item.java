@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name= "ITEM_ID")
     private Long itemId;
 
@@ -25,6 +25,14 @@ public class Item {
 
     public Item(Long itemId, String itemName) {
         this.itemId = itemId;
+        this.itemName = itemName;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setItemName(String itemName) {
         this.itemName = itemName;
     }
 
