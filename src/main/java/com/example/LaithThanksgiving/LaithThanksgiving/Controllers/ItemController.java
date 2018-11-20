@@ -3,8 +3,12 @@ package com.example.LaithThanksgiving.LaithThanksgiving.Controllers;
 
 import com.example.LaithThanksgiving.LaithThanksgiving.data_model.Item;
 import com.example.LaithThanksgiving.LaithThanksgiving.data_service.ItemService;
+import com.rabbitmq.client.RpcClient;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -20,17 +24,18 @@ public class ItemController {
     }
 
 
-    @PostMapping ("/add")
-    public void addItem (@RequestBody Item item){
+    @PostMapping ("/item")
+    public ResponseEntity<Item> addItem (@RequestBody Item item) throws URISyntaxException
 
+    {
+            if (item.getItemId() != null && !itemService.isItemExists(item.getItemId())) {
+                itemService.addItem(item);
+                return  ResponseEntity.status(HttpStatus.OK).build();
+            } else {
 
-        if(!itemService.isItemExists(item.getItemId())){
-        itemService.addItem(item);
-        } else {
-
-            itemService.updateItem(item);
-       }
-
+                itemService.updateItem(item);
+                return  ResponseEntity.status(HttpStatus.OK).build();
+            }
     }
 
     @GetMapping("/getall")
@@ -40,9 +45,15 @@ public class ItemController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteItem(@PathVariable("id") Long id)
+    public ResponseEntity<Item>  deleteItem(@PathVariable("id") Long id)
     {
-        this.itemService.deleteItem(id);
+
+        if (itemService.isItemExists(id)){
+            this.itemService.deleteItem(id);
+            return  ResponseEntity.status(HttpStatus.OK).build();
+        } else {
+            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
 
     }
 
