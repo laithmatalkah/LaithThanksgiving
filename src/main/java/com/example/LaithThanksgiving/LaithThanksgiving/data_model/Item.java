@@ -1,13 +1,14 @@
 package com.example.LaithThanksgiving.LaithThanksgiving.data_model;
 
 
+
 import javax.persistence.*;
 
 @Entity (name= "ITEMS")
 public class Item {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name= "ITEM_ID")
     private Long itemId;
 

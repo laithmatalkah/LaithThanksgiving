@@ -79,9 +79,16 @@ public class ItemControllerTest
         when(itemServiceMock.getAllItems()).thenReturn(expected);
         List<Item> actual= itemController.getAllItems();
 
+    }
 
+    @Test
 
+    public  void deleteItem(){
 
+        ItemController itemController=new ItemController(itemServiceMock);
+
+itemController.deleteItem(1L);
+        verify(itemServiceMock, times(1)).deleteItem(1L);
     }
 
 
