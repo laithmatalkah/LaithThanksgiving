@@ -6,9 +6,9 @@ import com.example.LaithThanksgiving.LaithThanksgiving.data_model.Item;
 
 public interface ItemRepo extends CrudRepository<Item, Long> {
 
-    @Query("select i from ITEMS i where i.itemName=?1")
-
-    Item findByName(String name);
+//    @Query("select i from ITEMS i where i.itemName=?1") // search object by name
+//
+//    Item findByName(String name);
 
 
 }

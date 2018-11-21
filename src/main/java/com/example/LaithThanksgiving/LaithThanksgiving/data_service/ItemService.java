@@ -25,6 +25,6 @@ public class ItemService {
     public void updateItem(Item item) { this.itemRepo.save(item);}
     public boolean isItemExists (Long id) { return  itemRepo.existsById(id);}
     public void deleteItem (Long id)  {this.itemRepo.deleteById(id);}
-    public Item findItemByName (String name) { return itemRepo.findByName(name);}
+    //public Item findItemByName (String name) { return itemRepo.findByName(name);}
 
 }
