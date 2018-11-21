@@ -3,13 +3,10 @@ package com.example.LaithThanksgiving.LaithThanksgiving.Controllers;
 
 import com.example.LaithThanksgiving.LaithThanksgiving.data_model.Item;
 import com.example.LaithThanksgiving.LaithThanksgiving.data_service.ItemService;
-import com.rabbitmq.client.RpcClient;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -27,7 +24,7 @@ public class ItemController {
 
     @PostMapping("/create/{itemName}")
     public ResponseEntity<Item> createItem(@PathVariable("itemName") String itemName, @RequestBody Item item) {
-//        item.setItemName(itemName);
+        item.setItemName(itemName);
 //        if (itemService.findItemByName(item.getItemName())==null) {
             itemService.createItem(item);
             return ResponseEntity.ok(item);
@@ -45,8 +42,14 @@ public class ItemController {
         return  ResponseEntity.ok(items);
     }
 
-    @GetMapping("/get/{itemName{id}")
-    public ResponseEntity<Item> getItem (@PathVariable ("id") Long id) throws NoSuchElementException {
+    @GetMapping("/getbytype/{itemName}")
+    public ResponseEntity<List<Item>> getItemByType (@PathVariable ("itemName") String itemName){
+        List<Item> items= itemService.findItemByName(itemName) ;
+        return  ResponseEntity.ok(items);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Item> getItem ( @PathVariable ("id") Long id) throws NoSuchElementException {
         try {
             Item item =itemService.getItem(id);
             return  ResponseEntity.ok(item);
@@ -59,12 +62,12 @@ public class ItemController {
     public ResponseEntity<Item>  deleteItem(@PathVariable("id") Long id)
     {
 
-        if (itemService.isItemExists(id)){
+     //   if (itemService.isItemExists(id)){
             this.itemService.deleteItem(id);
             return  ResponseEntity.status(HttpStatus.OK).build();
-        } else {
-            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+      //  } else {
+      //      return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+      //  }
 
     }
 
