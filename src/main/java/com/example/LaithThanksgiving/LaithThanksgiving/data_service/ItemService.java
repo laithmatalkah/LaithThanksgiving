@@ -22,7 +22,7 @@ public class ItemService {
     public List<Item> getAllItems () { return (List) itemRepo.findAll();}
     public Item getItem (Long id) { return  itemRepo.findById(id).get();}
     public void updateItem(Item item) { this.itemRepo.save(item);}
-    public boolean isItemExists (Long id) { return  itemRepo.existsById(id);}
+    public boolean isItemExists (Long id) { return  true/*itemRepo.existsById(id)*/;}
     public void deleteItem (Long id)  {this.itemRepo.deleteById(id);}
     public List<Item> findItemByName (String name) { return itemRepo.findByName(name);}
 

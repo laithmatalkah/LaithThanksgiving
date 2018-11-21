@@ -10,13 +10,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -38,9 +34,21 @@ public class ItemControllerTest
         Item expectedItem= new Item (1L,"Sord");
         ItemController itemController =  new ItemController(itemServiceMock);
 
+<<<<<<< HEAD
         itemController.createItem("Sord",expectedItem);
 
         verify(itemServiceMock, times(1)).createItem(expectedItem);
+=======
+        itemServiceMock.createItem(expectedItem);
+
+        verify(itemServiceMock, times(1)).createItem(expectedItem);
+//        when(statusLine.getStatusCode()).thenReturn(200);
+//        when(httpResponse.getStatusLine()).thenReturn(statusLine);
+//        when(httpClient.execute(httpPost)).thenReturn(httpResponse);
+//
+//        //exercise
+//        Item actualItem = itemController.addItem(expectedItem);
+>>>>>>> origin/master
 
 
 
@@ -57,13 +65,17 @@ public class ItemControllerTest
             add(new Item(2L, "Knife"));
             add(new Item(3L, "Rifle"));
             add(new Item(4L, "Rifle"));
+<<<<<<< HEAD
 
         }};
+=======
+>>>>>>> origin/master
 
         List<Item> expected=new ArrayList<Item>() {{
             add(new Item(1L, "Sord"));
         }};
 
+<<<<<<< HEAD
         List<Item> actual=new ArrayList<Item>();
         for(int i=0;i<items.size();i++){
             if(items.get(i).getItemName().equals(name)){
@@ -93,14 +105,35 @@ public class ItemControllerTest
     }
 
     @Test
+=======
+        List<Item> expected=new ArrayList<Item>() {{
+            add(new Item(1L, "Sord"));
+        }};
+>>>>>>> origin/master
 
-    public  void deleteItem(){
+        List<Item> actual=new ArrayList<Item>();
+        for(int i=0;i<items.size();i++){
+            if(items.get(i).getItemName().equals(name)){
+                actual.add(items.get(i));
+            }
+        }
 
         ItemController itemController=new ItemController(itemServiceMock);
+        when(itemServiceMock.findItemByName(name)).thenReturn(expected);
+        Assert.assertEquals(expected.get(0).getItemName(),actual.get(0).getItemName());
 
-itemController.deleteItem(1L);
-        verify(itemServiceMock, times(1)).deleteItem(1L);
+
     }
+
+//    @Test
+//
+//    public  void deleteItem(){
+//
+//        ItemController itemController=new ItemController(itemServiceMock);
+//
+//
+//        verify(itemServiceMock, times(1)).deleteItem(1L);
+//    }
 
 
 

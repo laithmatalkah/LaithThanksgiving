@@ -24,55 +24,56 @@ public class ItemController {
     @PostMapping("/create/{itemName}")
     public ResponseEntity<Item> createItem(@PathVariable("itemName") String itemName, @RequestBody Item item) {
         item.setItemName(itemName);
-        if (itemService.findItemByName(item.getItemName())==null) {
+
+        if (itemService.findItemByName(item.getItemName()) == null) {
+
             itemService.createItem(item);
             return ResponseEntity.ok(item);
-       } else {
+        } else {
 
             return ResponseEntity.status(409).build(); // object already exists
         }
-
-
     }
 
     @GetMapping("/getall")
-    public ResponseEntity<List<Item>> getAllItems (){
-        List<Item> items= itemService.getAllItems() ;
-        return  ResponseEntity.ok(items);
+    public ResponseEntity<List<Item>> getAllItems() {
+        List<Item> items = itemService.getAllItems();
+        return ResponseEntity.ok(items);
     }
 
 
     @GetMapping("/get/{itemName}")
-    public ResponseEntity<List<Item>> getItemByName (@PathVariable ("itemName") String itemName)  {
+    public ResponseEntity<List<Item>> getItemByName(@PathVariable("itemName") String itemName) {
 
-            List<Item> items =itemService.findItemByName(itemName);
-            return  ResponseEntity.ok(items);
+        List<Item> items = itemService.findItemByName(itemName);
+        return ResponseEntity.ok(items);
 
     }
 
     @GetMapping("/get/{itemName}/{id}")
-    public ResponseEntity<Item> getItem (@PathVariable ("id") Long id) throws NoSuchElementException {
-       try {
-            Item item =itemService.getItem(id);
-            return  ResponseEntity.ok(item);
-        } catch (NoSuchElementException e){
-           return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-       }
+    public ResponseEntity<Item> getItem(@PathVariable("itemName") String itemName, @PathVariable("id") Long id) throws NoSuchElementException {
+        try {
+            Item item = itemService.getItem(id);
+            return ResponseEntity.ok(item);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Item>  deleteItem(@PathVariable("id") Long id)
-    {
+    public ResponseEntity<Item> deleteItem(@PathVariable("id") Long id) {
 
-        if (itemService.isItemExists(id)){
+        if (itemService.isItemExists(id)) {
             this.itemService.deleteItem(id);
-           return  ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.OK).build();
         } else {
-            return  ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
     }
 
+    }
 
 
-}
+
+
