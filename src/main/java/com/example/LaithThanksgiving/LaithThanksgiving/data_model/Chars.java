@@ -1,10 +1,8 @@
 package com.example.LaithThanksgiving.LaithThanksgiving.data_model;
 
 
-
-
 import javax.persistence.*;
-
+import java.util.List;
 
 
 @Entity(name= "CHARACTERS")
@@ -47,7 +45,8 @@ public class Chars {
     private Long location;
 
     @Column(name="INVENTORY")
-    private Object[] inventory;
+    @ElementCollection(targetClass=Item.class)
+    private List<Item> inventory;
 
     @Column(name="HITPOINTS")
     private int hitpoints;
@@ -71,6 +70,14 @@ public class Chars {
     public void setInt(int anInt) {
 
         this.Int = anInt;
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(List<Item> inventory) {
+        this.inventory = inventory;
     }
 
     public void setWis(int wis) {
