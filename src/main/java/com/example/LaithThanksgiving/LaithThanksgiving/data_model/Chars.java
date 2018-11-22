@@ -5,9 +5,6 @@ package com.example.LaithThanksgiving.LaithThanksgiving.data_model;
 
 import javax.persistence.*;
 
-import java.util.Arrays;
-import java.util.Random;
-
 
 
 @Entity(name= "CHARACTERS")
@@ -47,7 +44,7 @@ public class Chars {
     private int con;
 
     @Column(name="LOCATION")
-    private int location;
+    private Long location;
 
     @Column(name="INVENTORY")
     private Object[] inventory;
@@ -96,7 +93,7 @@ public class Chars {
         this.con = (int)(Math.random()* (18-8)) +8;
     }
 
-    public void setLocation(int location) {
+    public void setLocation(Long location) {
         this.location = location;//(int)(Math.random()* (18-8)) +8;
     }
 
@@ -136,7 +133,7 @@ public class Chars {
         return con;
     }
 
-    public int getLocation() {
+    public Long getLocation() {
         return location;
     }
 

@@ -3,7 +3,6 @@ package com.example.LaithThanksgiving.LaithThanksgiving.Controllers;
 
 import com.example.LaithThanksgiving.LaithThanksgiving.data_model.Room;
 import com.example.LaithThanksgiving.LaithThanksgiving.data_service.RoomService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +13,12 @@ import java.util.NoSuchElementException;
 @RequestMapping("/room")
 public class RoomController {
 
-    @Autowired
-    RoomService roomService;
+
+    private final RoomService roomService;
+
+    public RoomController(RoomService roomService) {
+        this.roomService = roomService;
+    }
 
     @PostMapping("/create")
     public ResponseEntity <Room>  createRoom (@RequestBody Room room){

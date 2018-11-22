@@ -12,11 +12,22 @@ public class Room {
     @Column (name="ROOM_ID")
     private Long roomId;
 
+    @Column (name="ROOM_NAME")
+    private String roomName;
+
     @Column (name="ROOM_DESCRIPTION")
     private String description;
 
     @Column (name="EXITS")
     private int[] exits;
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
 
     public Long getRoomId() {
         return roomId;

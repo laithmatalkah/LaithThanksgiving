@@ -62,7 +62,7 @@ public class RandomGenerator {
 
 
 
-        character.setLocation((int) (Math.random()* (18-8)+1) +8);
+        character.setLocation(3L);//(int) (Math.random()* (18-8)+1) +8);
         character.setCon((int) (Math.random()* (18-8)+1) +8);
         character.setHitpoints(character.getCon()*2);
 

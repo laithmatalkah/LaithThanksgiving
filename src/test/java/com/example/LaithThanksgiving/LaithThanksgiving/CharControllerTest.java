@@ -26,7 +26,7 @@ CharService charServiceMock= Mockito.mock(CharService.class) ;
     Chars expected= new Chars ();
     CharController charController =  new CharController(charServiceMock);
 
-    charController.generateChatracter("Cha1","Warrior",expected);
+    charController.generateCharacter("Cha1","Warrior",expected);
 
     verify(charServiceMock, times(1)).createCharacter(expected);
 

@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/character")
 public class CharController {
 
-    private final CharService charService;
+
+
+   private final CharService charService;
 
     public CharController(CharService charService) {
         this.charService = charService;
     }
 
+
     @PostMapping ("/gen/{charName}/{charClass}")
 
-    public ResponseEntity<Chars> generateChatracter (@PathVariable ("charName") String charName, @PathVariable("charClass") String charClass
+    public ResponseEntity<Chars> generateCharacter (@PathVariable ("charName") String charName, @PathVariable("charClass") String charClass
     , @RequestBody Chars character) {
 
         character.setName(charName);

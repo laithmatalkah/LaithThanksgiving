@@ -15,5 +15,6 @@ public class CharService {
     }
 
 
-    public void createCharacter (Chars character){ this.charRepo.save(character);}
+    public void createCharacter (Chars character){ this.charRepo.save(character); }
+    public Chars getChar (Long id) {return this.charRepo.findById(id).get();}
 }
